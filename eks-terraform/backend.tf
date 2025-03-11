@@ -9,7 +9,7 @@ terraform {
   backend "s3" {
     bucket = "state-remote-store"
     key    = "eks/terraform.tfstate"
-    region = "ap-south-1"
+    region = "ap-east-1"
   }
 
   required_version = ">= 1.6.3"
