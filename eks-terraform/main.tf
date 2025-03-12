@@ -118,7 +118,7 @@ provider "aws" {
 }
 
 data "aws_subnet" "subnet-1" {
- vpc_id = data.aws_vpc.main.id
+ vpc_id = vpc-0a913d9a174b3f969 
  filter {
     name = "tag:Name"
     values = ["Jumphost-subnet1"]
@@ -126,17 +126,17 @@ data "aws_subnet" "subnet-1" {
 }
 
 data "aws_subnet" "subnet-2" {
- vpc_id = data.aws_vpc.main.id
+ vpc_id = vpc-0a913d9a174b3f969 
  filter {
     name = "tag:Name"
     values = ["Jumphost-subnet2"]
  }
 }
 data "aws_security_group" "selected" {
-  vpc_id = data.aws_vpc.main.id
+  vpc_id = vpc-0a913d9a174b3f969 
   filter {
     name = "tag:Name"
-    values = ["Jumphost-sg"]
+    values = ["launch-wizard-10"]
  }
 }
 
