@@ -132,7 +132,7 @@ data "aws_subnet" "subnet-2" {
     values = ["Jumphost-subnet2"]
  }
 }
-data "aws_security_group" "launch-wizard-10" {
+data "aws_security_group" "selected" {
   vpc_id = data.aws_vpc.main.id 
   filter {
     name = "tag:Name"
