@@ -35,12 +35,6 @@ resource "aws_iam_policy" "eks_tag_resource_policy" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "attach_eks_tag_policy" {
-  role       = "Project3tier"
-  policy_arn = aws_iam_policy.eks_tag_resource_policy.arn
-}
-
-
 resource "aws_iam_role_policy_attachment" "attach_eks_create_policy" {
   role       = "Project3tier"
   policy_arn = aws_iam_policy.eks_create_policy.arn
