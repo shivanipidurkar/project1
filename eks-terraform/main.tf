@@ -208,7 +208,7 @@ data "aws_security_group" "selected" {
     instance_types  = ["t2.medium"]
 
     remote_access {
-      ec2_ssh_key               = "provisioner"
+      ec2_ssh_key               = "keypair"
       source_security_group_ids = [data.aws_security_group.selected.id]
     }
 
