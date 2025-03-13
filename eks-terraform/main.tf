@@ -17,6 +17,30 @@ resource "aws_iam_policy" "eks_create_policy" {
   })
 }
 
+resource "aws_iam_policy" "eks_tag_resource_policy" {
+  name        = "EKSCreateAndTagPolicy"
+  description = "Custom policy to allow EKS cluster creation and tagging"
+  policy      = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = [
+          "eks:CreateCluster",
+          "eks:TagResource"
+        ]
+        Resource = "arn:aws:eks:us-east-1:688567260528:cluster/project-eks"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "attach_eks_tag_policy" {
+  role       = "Project3tier"
+  policy_arn = aws_iam_policy.eks_tag_resource_policy.arn
+}
+
+
 resource "aws_iam_role_policy_attachment" "attach_eks_create_policy" {
   role       = "Project3tier"
   policy_arn = aws_iam_policy.eks_create_policy.arn
