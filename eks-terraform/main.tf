@@ -2,6 +2,27 @@ provider "aws" {
   region = "us-east-1"  # Specify your desired region
 }
 
+resource "aws_iam_policy" "eks_create_policy" {
+  name        = "EKSCreateClusterPolicy"
+  description = "Policy to create EKS cluster"
+  policy      = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = "eks:CreateCluster"
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "attach_eks_create_policy" {
+  role       = "Project3tier"
+  policy_arn = aws_iam_policy.eks_create_policy.arn
+}
+
+
  #Creating IAM role for EKS
   resource "aws_iam_role" "master" {
     name = "veera-eks-master"
